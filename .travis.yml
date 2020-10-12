@@ -15,8 +15,8 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t Refactor-Monolith-to-Microservices-Project .
-  - docker tag Refactor-Monolith-to-Microservices-Project gerboyle/Refactor-Monolith-to-Microservices-Project:latest
+  - docker build -t refactor-monolith-to-microservices-project .
+  - docker tag refactor-monolith-to-microservices-project gerboyle/refactor-monolith-to-microservices-project:latest
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
