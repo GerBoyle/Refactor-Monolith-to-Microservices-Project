@@ -1,0 +1,40 @@
+version: "3"
+services:
+  reverseproxy:
+      image: gerboyle/reverseproxy
+      ports:
+          - 8080:8080
+      restart: always
+      depends_on:
+        - backend-user
+        - backend-feed     
+  backend-user:
+    image: gerboyle/udagram-api-user
+    environment:
+      username: $POSTGRES_USERNAME
+      password: $POSTGRES_PASSWORD 
+      database: $POSTGRES_DB 
+      host: $POSTGRES_HOST 
+      aws_region: $AWS_REGION 
+      aws_profile: $AWS_PROFILE 
+      aws_media_bucket: $AWS_BUCKET
+      jwt: $JWT_SECRET
+      URL: "http://localhost:8100"
+  backend-feed:
+    image: gerboyle/udagram-api-feed
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      username: $POSTGRES_USERNAME
+      password: $POSTGRES_PASSWORD 
+      database: $POSTGRES_DB 
+      host: $POSTGRES_HOST 
+      aws_region: $AWS_REGION 
+      aws_profile: $AWS_PROFILE 
+      aws_media_bucket: $AWS_BUCKET
+      jwt: $JWT_SECRET
+      URL: "http://localhost:8100"
+  frontend:
+    image: gerboyle/udagram-frontend:local
+    ports:
+      - "8100:80"
