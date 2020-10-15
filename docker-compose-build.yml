@@ -6,8 +6,8 @@ services:
     image: dockerUser/reverseproxy 
   backend_user:
     build:
-      context: ../../udacity-c3-restapi-user
-    image: dockerUser/udacity-restapi-user
+      context: ../../udagram-api-user
+    image: dockerUser/udagram-api-user
   backend_feed:
     build:
       context: ../../udacity-c3-restapi-feed  
