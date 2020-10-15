@@ -1,18 +1,18 @@
-version: "3"
+    version: "3"
 services:
   reverseproxy:
     build:
       context: .
-    image: gerboyle/reverseproxy 
+    image: dockerUser/reverseproxy 
   backend_user:
     build:
-      context: ../../udacity/project
-    image: gerboyle/udagram-api-user
+      context: ../../udacity-c3-restapi-user
+    image: dockerUser/udacity-restapi-user
   backend_feed:
     build:
-      context: ../../udacity/project
-    image: gerboyle/udagram-api-feed
+      context: ../../udacity-c3-restapi-feed  
+    image: dockerUser/udacity-restapi-feed
   frontend:
     build:
-      context: ../../udacity/project 
-    image: gerboyle/udagram-frontend:local
+      context: ../../udacity-c3-frontend  
+    image: dockerUser/udacity-frontend:local
