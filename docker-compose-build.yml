@@ -6,13 +6,13 @@ services:
     image: dockerUser/reverseproxy 
   backend_user:
     build:
-      context: .
+      context: ../../udagram-api-user
     image: dockerUser/udagram-api-user
   backend_feed:
     build:
-      context: . 
+      context: ../../udagram-api-feed
     image: dockerUser/udagram-api-feed
   frontend:
     build:
-      context: . 
+      context: ../../udagram-frontend 
     image: dockerUser/udagram-frontend:local
