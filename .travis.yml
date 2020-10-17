@@ -18,3 +18,4 @@ language: minimal
  install:
    - docker-compose -f udacity-deployment/docker/docker-compose-build.yaml build --parallel 
    - docker-compose -f udacity-deployment/docker/docker-compose-build.yaml push
+
