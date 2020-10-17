@@ -3,16 +3,16 @@ services:
   reverseproxy:
     build:
       context: .
-    image: dockerUser/reverseproxy 
+    image: gerboyle/reverseproxy
   backend_user:
     build:
-      context: ../udagram-api-user
-    image: dockerUser/udagram-api-user
+      context: ../../udagram-backend-user
+    image: gerboyle/udagram-api-user
   backend_feed:
     build:
-      context: ../udagram-api-feed
-    image: dockerUser/udagram-api-feed
+      context: ../../udagram-backend-feed
+    image: gerboyle/udagran-api-feed
   frontend:
     build:
-      context: ../udagram-frontend 
-    image: dockerUser/udagram-frontend:local
+      context: ../../udagram-frontend  
+    image: gerboyle/udagram-frontend
