@@ -4,6 +4,10 @@ services:
     build:
       context: .
     image: gerboyle/reverseproxy
+  backend_user:
+    build:
+      context: ../../udagram-api-user
+    image: gerboyle/udagram-api-user
   backend_feed:
     build:
       context: ../../udagram-api-feed
