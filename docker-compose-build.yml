@@ -6,7 +6,7 @@ services:
     image: gerboyle/reverseproxy
   backend_user:
     build:
-      context: ../../backend_user
+      context: ../../backend_users
     image: gerboyle/udagram-api-user
   backend_feed:
     build:
