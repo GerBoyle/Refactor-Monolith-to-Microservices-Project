@@ -10,9 +10,9 @@ services:
     image: gerboyle/udagram-api-users
   backend_feed:
     build:
-      context: ../../udagram-api-feed
+      context: ./udagram-api-feed
     image: gerboyle/udagran-api-feed
   frontend:
     build:
-      context: ../../udagram-frontend  
+      context: ./udagram-frontend  
     image: gerboyle/udagram-frontend
