@@ -15,6 +15,7 @@ before_install:
   - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config # include to travis console env variable :cat ${HOME}/.kube/config | base64 | pbcopy
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin # set Docker username and password in Travis console
   - echo 'dockerhub credentials configured'
+  - echo $POSTGRES_USERNAME
 install:
   - docker-compose -f docker-compose-build.yml build --parallel 
   - docker-compose -f docker-compose-build.yml push
