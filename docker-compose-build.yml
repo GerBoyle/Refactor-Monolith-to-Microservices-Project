@@ -2,17 +2,17 @@ version: "3"
 services:
   reverseproxy:
     build:
-      context: .
+      context: ./reverseproxy
     image: gerboyle/reverseproxy
   backend_user:
     build:
-      context: ../../udagram-backend-user
-    image: gerboyle/udagram-api-user
+      context: ./udagram-api-users
+    image: gerboyle/udagram-api-users
   backend_feed:
     build:
-      context: ../../udagram-api-feed
+      context: ./udagram-api-feed
     image: gerboyle/udagran-api-feed
   frontend:
     build:
-      context: ../../udagram-frontend  
+      context: ./udagram-frontend  
     image: gerboyle/udagram-frontend
