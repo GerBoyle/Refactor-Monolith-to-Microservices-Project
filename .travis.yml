@@ -29,4 +29,6 @@ after_success:
   - docker push gerboyle/reverseproxy
   - docker push gerboyle/frontend
   - docker push frontend
+  - docker push gerboyle/udagram-api-feed
+  - docker push udagram-api-feed
 
