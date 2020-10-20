@@ -19,7 +19,12 @@ install:
   - docker-compose -f docker-compose-build.yml build --parallel
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push gerboyle/udagram-api-user
-  - docker push gerboyle/udagram-api-feed
+  - docker push gerboyle/udagram-api-users
+  - docker push gerboyle/udagram-frontend
+  - docker push gerboyle/udagran-api-feed
   - docker push gerboyle/reverseproxy
   
+
+
+
+
