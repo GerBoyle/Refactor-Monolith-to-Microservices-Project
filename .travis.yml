@@ -20,7 +20,7 @@ install:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push gerboyle/reverseproxy
-  - docker push udagram-api-users
+  - docker push gerboyle/udagram-api-users
   - docker push udagram-api-feed
   - docker push gerboyle/backend_feed
   - docker push gerboyle/backend-feed
