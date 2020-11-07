@@ -9,4 +9,4 @@ data:
   POSTGRES_HOST: dWRhZ3JhbXByb2plY3RkZXYuYzJ2Z2Jpb2V5cGx0LmV1LXdlc3QtMS5yZHMuYW1hem9uYXdzLmNvbQo=
   URL: http://localhost:8100  
 metadata:
-  name: env-config
+  name: env-configmap

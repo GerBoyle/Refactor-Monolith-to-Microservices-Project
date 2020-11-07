@@ -14,6 +14,10 @@ spec:
       labels:
         app: backend-feed
     spec:
+      volumes:
+                - name: configmap-volume
+                  configMap:
+                    name: env-configmap
       containers:
       - image: gerboyle/udagram-api-feed
         name: backend-feed
@@ -27,50 +31,38 @@ spec:
             cpu: "500m"                  
         env:
         - name: URL
-          valueFrom:
-            configMapKeyRef:
-              name: env-config
-              key: URL
+          value: http://localhost:8100
         - name: AWS_BUCKET
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-configmap
               key: AWS_BUCKET
         - name: AWS_PROFILE
-          valueFrom:
-            configMapKeyRef:
-              name: env-config
-              key: AWS_PROFILE
+          value: default
         - name: AWS_REGION
-          valueFrom:
-            configMapKeyRef:
-              name: env-config
-              key: AWS_REGION
+          value: eu-west-1
         - name: JWT_SECRET
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: env-configmap
               key: JWT_SECRET
-        - name: POSTGRESS_DB
+        - name: POSTGRES_DB
+          value: postgres
+        - name: POSTGRES_HOST
           valueFrom:
             configMapKeyRef:
-              name: env-config
-              key: POSTGRESS_DB
-        - name: POSTGRESS_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: env-config
-              key: POSTGRESS_HOST
-        - name: POSTGRESS_PASSWORD
+              name: env-configmap
+              key: POSTGRES_HOST
+        - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRESS_PASSWORD
-        - name: POSTGRESS_USERNAME
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_USERNAME
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRESS_USERNAME      
+              key: POSTGRES_USERNAME      
         volumeMounts:
         - name: aws-secret
           mountPath: "/root/.aws/"
@@ -79,4 +71,4 @@ spec:
       volumes:
       - name: aws-secret
         secret:
-          secretName: aws-secret 
+          secretName: aws-secret
