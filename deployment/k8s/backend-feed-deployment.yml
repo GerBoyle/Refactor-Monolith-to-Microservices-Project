@@ -2,22 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: backend-feed
+    service: backend-feed
   name: backend-feed
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: backend-feed
+      service: backend-feed
   template:
     metadata:
       labels:
-        app: backend-feed
+        service: backend-feed
     spec:
-      volumes:
-                - name: configmap-volume
-                  configMap:
-                    name: env-configmap
       containers:
       - image: gerboyle/udagram-api-feed
         name: backend-feed
@@ -35,8 +31,8 @@ spec:
         - name: AWS_BUCKET
           valueFrom:
             configMapKeyRef:
-              name: env-configmap
-              key: AWS_BUCKET
+              name: env-config
+              key: AWS_BUCKET          
         - name: AWS_PROFILE
           value: default
         - name: AWS_REGION
@@ -44,14 +40,14 @@ spec:
         - name: JWT_SECRET
           valueFrom:
             configMapKeyRef:
-              name: env-configmap
+              name: env-config
               key: JWT_SECRET
         - name: POSTGRES_DB
           value: postgres
         - name: POSTGRES_HOST
           valueFrom:
             configMapKeyRef:
-              name: env-configmap
+              name: env-config
               key: POSTGRES_HOST
         - name: POSTGRES_PASSWORD
           valueFrom:
@@ -62,7 +58,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRES_USERNAME      
+              key: POSTGRES_USERNAME  
         volumeMounts:
         - name: aws-secret
           mountPath: "/root/.aws/"
