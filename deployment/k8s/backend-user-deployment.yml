@@ -5,7 +5,7 @@ metadata:
     app: backend-user
   name: backend-user
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend-user
@@ -27,19 +27,25 @@ spec:
             cpu: "500m"     
         env:
         - name: URL
-          value: http://localhost:8100
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL
         - name: JWT_SECRET
           valueFrom:
             configMapKeyRef:
               name: env-config
               key: JWT_SECRET
         - name: POSTGRES_DB
-          value: postgres
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DB
         - name: POSTGRES_HOST
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: POSTGRES_HOST
+              key: POSTGRES_HOST   
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -49,5 +55,5 @@ spec:
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRES_USERNAME      
+              key: POSTGRES_USERNAME 
       restartPolicy: Always
